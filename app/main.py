@@ -2,7 +2,8 @@ from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from langchain.memory import CassandraChatMessageHistory, ConversationBufferMemory
 from langchain.llms import OpenAI
-from langchain import LLMChain, PromptTemplate
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
 import json
 
 cloud_config= {
@@ -15,7 +16,7 @@ with open("ripple_ai-token.json") as f:
 CLIENT_ID = secrets["clientId"]
 CLIENT_SECRET = secrets["secret"]
 ASTRA_DB_KEYSPACE = "database"
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 
 auth_provider = PlainTextAuthProvider(CLIENT_ID, CLIENT_SECRET)
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
@@ -38,49 +39,18 @@ cass_buff_memory = ConversationBufferMemory(
 
 #template given to AI 
 template = """
-Setting
-In the mystical land of Eldoria, a realm filled with magic, mythical creatures, and ancient secrets. 
-The protagonist is a young adventurer seeking the legendary Crystal of Eldoria, said to possess immense power.
+In a world where time travel is possible, you discover a mysterious journal that allows you to revisit pivotal moments in your life. However, each alteration you make has unforeseen consequences, creating a ripple effect that changes your present reality.
 
-Main Objectives
-Gather Information: Learn about the Crystal's last known location in the village of Eldor.
-Recruit Allies: Find and persuade at least two companions to join the quest.
-Cross the Dark Forest: Navigate through a forest filled with dangerous creatures.
-Decipher the Ancient Map: Obtain and decipher a map that leads to the Crystal.
-Pass the Trial of Elements: Survive trials based on the four natural elements: fire, water, earth, and air.
-Retrieve the Silver Key: Obtain a key guarded by a fierce dragon.
-Solve the Riddle of the Sphinx: Answer the riddle posed by a mystical sphinx to gain passage.
-Traverse the Cavern of Shadows: Safely navigate a treacherous underground cavern.
-Confront the Guardian: Battle or outwit the Guardian of the Crystal.
-Seize the Crystal of Eldoria: Successfully take the Crystal.
+You start with a choice: travel back to a traumatic event in your childhood and prevent it, potentially erasing years of pain, or let the past remain unchanged and focus on your present life. The journal warns that altering the past may lead to unintended and unpredictable outcomes.
 
-Potential Outcomes Leading to Death
-In the Dark Forest: Losing a battle against the forest's beasts or getting lost forever.
-During the Trial of Elements: Failing to adapt to and overcome the elemental challenges.
-Facing the Dragon: Provoking the dragon without adequate preparation or strategy.
-At the Sphinx: Giving a wrong answer to the riddle, leading to a deadly trap.
-Within the Cavern of Shadows: Falling into hidden pits or being overwhelmed by shadow creatures.
-Against the Guardian: Engaging the Guardian without sufficient strength or wit.
+As you delve deeper into your own history, you face increasingly difficult decisions. Do you mend broken relationships, pursue missed opportunities, or right past wrongs? Each choice alters the course of your life in unexpected ways.
 
-Non-lethal Outcomes
-Gaining Allies: Success or failure in recruiting companions affects later challenges.
-Deciphering the Map: Incorrect interpretation leads to longer and more dangerous routes.
-Obtaining the Silver Key: Choosing stealth or confrontation with the dragon influences future encounters.
-Navigating the Cavern: Safe passage reveals secrets and treasures, enhancing capabilities.
+Your goal is to navigate this temporal labyrinth and reach a resolution. Will your journey through time lead to a brighter, happier existence, or will the ever-expanding butterfly effect result in a darker, more twisted reality? The power to shape your destiny is in your hands, but be cautious – the consequences of playing with time are profound and irreversible.
 
-Interactivity and Choices
-Dialogue Choices: Interact with NPCs to gather information and make allies.
-Combat vs Diplomacy: Choose to fight or negotiate in various situations.
-Problem-Solving: Solve puzzles and riddles to progress.
-Exploration vs Caution: Decide whether to explore risky areas for potential rewards.
-
-Conclusion
-Success: Obtaining the Crystal and returning it to a museum or using its power wisely.
-Failure: Losing the Crystal or using its power for selfish or destructive purposes.
-Death: Various scenarios where poor choices or failed challenges lead to the protagonist's demise.
-
-Some rules to follow:
-1. Always start by asking for a name for the protagonist.
+Here are some rules to follow:
+1. Always begin by asking for a name.
+2. Always end each response with a question for the user.
+3. Stories should lead to an ending, whether that be good or bad.
 
 Here is the chat history, use this to understand what to say next: {chat_history}
 Human: {human_input}
@@ -101,5 +71,10 @@ llm_chain = LLMChain(
     memory = cass_buff_memory
 )
 
-response = llm_chain.predict(human_input="Start the adventure!")
-print(response)
+choice = "start"
+
+while True: 
+    response = llm_chain.predict(human_input=choice)
+    print(response.strip())
+
+    choice = input("Your reply: ")
