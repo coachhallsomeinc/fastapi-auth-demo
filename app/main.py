@@ -16,7 +16,7 @@ with open("ripple_ai-token.json") as f:
 CLIENT_ID = secrets["clientId"]
 CLIENT_SECRET = secrets["secret"]
 ASTRA_DB_KEYSPACE = "database"
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 
 auth_provider = PlainTextAuthProvider(CLIENT_ID, CLIENT_SECRET)
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
