@@ -49,7 +49,8 @@ def login_access_token(
 
     return {
         "access_token": token.access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
+        "user_id": str(user.id)
     }
 
 
