@@ -7,6 +7,7 @@ from app.controllers.BaseController import BaseController
 from app.models.user import User
 from app.schemas.user import UserCreate, UserUpdate
 
+#! include all other schemas for other controllers (import)
 
 class UserController(BaseController[User, UserCreate, UserUpdate]):
     def get_by_email(self, db: Session, *, email: str) -> Optional[User]:

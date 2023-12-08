@@ -20,8 +20,6 @@ fileConfig(config.config_file_name)
 # target_metadata = None
 
 from app.db.base import Base  # noqa
-from app.models import User
-from app.models.token import Token
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
@@ -31,13 +29,12 @@ target_metadata = Base.metadata
 
 
 def get_url():
-    user = os.getenv("POSTGRES_USER", "postgres")
-    password = os.getenv("POSTGRES_PASSWORD", "postgres")
-    server = os.getenv("POSTGRES_SERVER", "localhost:5432")
-    db = os.getenv("POSTGRES_DB", "postgres")
+    user = os.getenv("DB_USER", "postgres")
+    password = os.getenv("DB_PASSWORD", "postgres")
+    server = os.getenv("DB_SERVER", "localhost:5432")
+    db = os.getenv("DB_NAME", "postgres")
     connection_string = f"postgresql://{user}:{password}@{server}/{db}"
-    if os.environ.get('DATABASE_URL'):
-        connection_string = os.environ.get('DATABASE_URL')
+   
     return connection_string
 
 
