@@ -42,5 +42,4 @@ def create_collection(
 #    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     new_collection = controllers.collection.create_collection(db, obj_in=collection_in)
-
     return new_collection

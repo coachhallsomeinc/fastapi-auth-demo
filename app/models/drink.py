@@ -37,4 +37,4 @@ class Drink(Base):
     #collection_trackers = relationship("CollectionTrackerDrink", back_populates="drink")
 
     #? foreignkey relationship to 1 business
-    #business = relationship("Business", back_populates="drinks")
+    business = relationship("Business", back_populates="drinks", uselist=False)

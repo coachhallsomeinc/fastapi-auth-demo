@@ -28,4 +28,4 @@ class Tag(Base):
 
     business = relationship("BusinessTag", back_populates="tag")
     # Businesses has tag
-    #user = relationship("UserTag", back_populates="tag")
+    user = relationship("UserTag", back_populates="tag")

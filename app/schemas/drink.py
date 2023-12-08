@@ -6,7 +6,7 @@ from typing import List, Optional
 #! from perspective of a user - info given back to read a drink
 # consider CRUD
 
-from app.schemas.business import Business
+#from app.schemas.business import Business
 
 '''
 TODO:
@@ -46,5 +46,5 @@ class DrinkInDBBase(DrinkBase):
 # business that inherits from business in db base to include EVERYTHING
 #! DRINK
 class Drink(DrinkInDBBase):
-    #business: Business
+    #businesses: List["Business"]
     pass

@@ -25,23 +25,23 @@ TODO:
 '''
 
 #!- get - read all drinks as anonymous user
-@router.get("/", response_model=List[schemas.Drink])
-def read_drink(
+@router.get("/", response_model=List[schemas.Tag])
+def read_tag(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100
 #   current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    drinks = controllers.drink.get_multi(db, skip=skip, limit=limit)
-    return drinks
+    tags = controllers.tag.get_multi(db, skip=skip, limit=limit)
+    return tags
 
 #!- post - create new business (dev)
-@router.post("/", response_model=schemas.Drink)
-def create_drink(
+@router.post("/", response_model=schemas.Tag)
+def create_tag(
     *,
     db: Session = Depends(deps.get_db),
-    drink_in: schemas.DrinkBase,
+    tag_in: schemas.TagBase,
 #    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
-    new_drink = controllers.drink.create_drink(db, obj_in=drink_in)
-    return new_drink
+    new_tag= controllers.drink.create_tag(db, obj_in=tag_in)
+    return new_tag

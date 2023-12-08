@@ -27,7 +27,7 @@ class User(Base):
 
 # relationship
     #badges = relationship("UserBadge", back_populates="user")
-    #tags = relationship("UserTag", back_populates="user")
+    tags = relationship("UserTag", back_populates="user")
     #reviews = relationship("Review", back_populates="user")
     #collection_trackers = relationship("Collection", back_populates="user")
 
@@ -64,5 +64,5 @@ class UserTag (Base):
     tag_id: Mapped[int] = mapped_column(ForeignKey("tags.id"))
 
 # relationship
-    #user = relationship("User", back_populates="tags")
-    #tag = relationship("Tag", back_populates="user")
+    user = relationship("User", back_populates="tags")
+    tag = relationship("Tag", back_populates="user")

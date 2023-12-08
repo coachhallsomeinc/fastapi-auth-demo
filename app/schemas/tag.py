@@ -6,8 +6,8 @@ from typing import List, Optional
 #! from perspective of a user - info given back to read a tag
 # consider CRUD
 #? do i need class config anywhere?
-from app.schemas.business import Business
-from app.schemas.user import User
+#from app.schemas.business import Business
+#from app.schemas.user import User
 
 '''
 TODO:
@@ -42,6 +42,6 @@ class TagInDBBase(TagBase):
 # Tag that inherits from Tag in db base to include EVERYTHING
 #! Tag
 class Tag(TagInDBBase):
-    
-    businesses: List["Business"]
-    users: List["User"]
+    pass
+    #businesses: List["Business"]
+    #users: List["User"]

@@ -6,6 +6,8 @@ from typing import List, Optional
 #! from perspective of a user - info given back to read a business
 # consider CRUD
 #? do i need class config anywhere?
+from app.schemas.drink import Drink
+from app.schemas.tag import Tag
 
 '''
 TODO:
@@ -43,9 +45,8 @@ class BusinessInDBBase(BusinessBase):
 # business that inherits from business in db base to include EVERYTHING
 #! BUSINESS
 class Business(BusinessInDBBase):
-    from app.schemas.drink import Drink
+
     #from app.schemas.review import Review
-    #from app.schemas.tag import Tag as T
     drinks: List["Drink"]
     #reviews: List["Review"]
     tags: List["Tag"]
