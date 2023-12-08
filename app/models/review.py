@@ -28,5 +28,5 @@ class Review(Base):
 
 #? foreign key relationships
     
-    #user = relationship("User", back_populates="reviews")
-    #business = relationship("Business", back_populates="reviews")
+    user = relationship("User", back_populates="reviews", uselist=False)
+    business = relationship("Business", back_populates="reviews", uselist=False)

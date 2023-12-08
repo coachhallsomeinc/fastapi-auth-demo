@@ -1,8 +1,8 @@
 from typing import Any, Dict, Optional, Union
 from sqlalchemy.orm import Session
 from app.controllers.BaseController import BaseController
-from app.models.collection_tracker import Collection as CollectionModel
-from app.schemas.collection_tracker import CollectionBase, CollectionCreate, CollectionUpdate, CollectionInDBBase
+from app.models.collection import Collection as CollectionModel
+from app.schemas.collection import CollectionBase, CollectionCreate, CollectionUpdate, CollectionInDBBase
 
 # [MODEL, CREATE SCHEMA, UPDATE SCHEMA]
 # should it just be get_by_id

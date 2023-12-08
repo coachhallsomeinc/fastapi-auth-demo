@@ -7,8 +7,8 @@ from typing import List, Optional
 #! from perspective of an authorized user - create/update/delete their own collections
 # consider CRUD
 
-# from app.schemas.drink import Drink
-# from app.schemas.user import User
+from app.schemas.drink import Drink
+from app.schemas.user import User
 
 '''
 TODO:

@@ -6,7 +6,7 @@ from pydantic import BaseModel
 #! from perspective of a user - info given back to read a badge
 
 #from app.schemas.business import Business
-from app.schemas.collection_tracker import Collection
+from app.schemas.collection import Collection
 #from app.schemas.user import User
 
 '''
@@ -44,4 +44,4 @@ class BadgeInDBBase(BadgeBase):
 class Badge(BadgeInDBBase):
     
     users: List["User"]
-    collection_trackers: List["Collection"]
+    collections: List["Collection"]

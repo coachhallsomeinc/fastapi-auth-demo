@@ -8,6 +8,7 @@ from typing import List, Optional
 #? do i need class config anywhere?
 from app.schemas.drink import Drink
 from app.schemas.tag import Tag
+#from app.schemas.review import Review
 
 '''
 TODO:
